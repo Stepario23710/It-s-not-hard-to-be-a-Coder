@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/World.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/Battle.unity
     guid: aa415cf0d49f7f546aea9a6c5c3e5a26
   - enabled: 1
-    path: Assets/Scenes/Puzzle.unity
-    guid: df9739d9fcba0ec4398de967506bc5c9
+    path: Assets/Scenes/LifeCodeStation.unity
+    guid: d3ef5c35977b8c04ebbada1e6926314c
+  - enabled: 1
+    path: Assets/Scenes/World.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

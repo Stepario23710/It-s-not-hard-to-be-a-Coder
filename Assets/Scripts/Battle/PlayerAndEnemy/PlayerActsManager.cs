@@ -7,51 +7,31 @@ using UnityEngine.UI;
 public class PlayerActsManager : MonoBehaviour
 {
     [field: SerializeField] public EnemyBattleHpSystem enemyHpSystem {get; private set;}
-    [SerializeField] private Text playerFPText;
-    [SerializeField] private Text playerCPText;
     [NonSerialized] public BattleActInicialisation act;
     private Animator anim;
     private Dictionary<string, (ActsBase, bool)> acts;
-    private int maxFp;
-    private int maxCp;
-    public int fp {get; private set;}
-    public int cp {get; private set;}
     void Start()
     {
         anim = GetComponent<Animator>();
         acts = new Dictionary<string, (ActsBase, bool)>(){
-            {"DubinkaStandartAtk", (GetComponent<DubinkaStandartAttack>(), true)},
-            {"DeerHealing", (GetComponent<DeerHealing>(), false)}
+            {"DubinkaAtk", (GetComponent<DubinkaAttack>(), true)},
         };//добавлять при необходимости
         ActsBase.ActEnded += DoSomethingWithPlayerOrEnemy;
-        maxFp = GlobalVaribles.maxFp;
-        fp = GlobalVaribles.fp;
-        maxCp = GlobalVaribles.maxCp;
-        cp = GlobalVaribles.cp;
-        playerFPText.text = fp.ToString() + "/" + maxFp.ToString();
-        playerCPText.text = cp.ToString() + "/" + maxCp.ToString();
         enemyHpSystem.EnemyDead += EndBattle;
-    }
-    void Update()
-    {
-        playerFPText.text = fp.ToString() + "/" + maxFp.ToString();
-        playerCPText.text = cp.ToString() + "/" + maxCp.ToString();
     }
     private void ActivateAct(){
         if (GlobalVaribles.isPlayerFirstSmash){
-            acts["DubinkaStandartAtk"].Item1.Activate();
-            anim.SetBool("IsDubinkaStandartAtk", true);
+            acts["DubinkaAtk"].Item1.Activate();
+            anim.SetBool("IsDubinkaAtk", true);
         } else {
             acts[act.typeOfAct].Item1.Activate();
             anim.SetBool("Is" + act.typeOfAct, true);
-            fp -= act.needFp;
-            cp -= act.needCp;
         }
     }
     private void DoSomethingWithPlayerOrEnemy(){
         if (GlobalVaribles.isPlayerFirstSmash){
-            enemyHpSystem.Damage(acts["DubinkaStandartAtk"].Item1.ReturnValue());
-            anim.SetBool("IsDubinkaStandartAtk", false);
+            enemyHpSystem.Damage(acts["DubinkaAtk"].Item1.ReturnValue());
+            anim.SetBool("IsDubinkaAtk", false);
             GlobalVaribles.isPlayerFirstSmash = false;
         } else {
             int val = acts[act.typeOfAct].Item1.ReturnValue();
@@ -65,7 +45,5 @@ public class PlayerActsManager : MonoBehaviour
     }
     private void EndBattle(){
         ActsBase.ActEnded -= DoSomethingWithPlayerOrEnemy;
-        GlobalVaribles.fp = fp;
-        GlobalVaribles.cp = cp;
     }
 }

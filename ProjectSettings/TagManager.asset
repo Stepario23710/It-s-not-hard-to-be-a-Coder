@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Platform
   - Spike
+  - LCS
   layers:
   - Default
   - TransparentFX
@@ -14,8 +15,8 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
+  - LifeObj
+  - PostProcessing
   - 
   - 
   - 

@@ -13,7 +13,7 @@ public class EnemiesSpawner : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++){
             transform.GetChild(i).gameObject.GetComponent<EnemyInicialisation>().num = i;
         }
-        if (GlobalVaribles.numOfScene == GlobalVaribles.aliveEnemiesOnScenes.Count){
+        if (GlobalVaribles.numOfScene + 1 > GlobalVaribles.aliveEnemiesOnScenes.Count){
             GlobalVaribles.aliveEnemiesOnScenes.Add(Enumerable.Repeat(true, transform.childCount).ToArray());
         } else {
             List<int> destroyingEnemies = new List<int>();

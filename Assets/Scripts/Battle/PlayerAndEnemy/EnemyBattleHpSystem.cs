@@ -86,6 +86,6 @@ public class EnemyBattleHpSystem : MonoBehaviour
         GlobalVaribles.aliveEnemiesOnScenes[GlobalVaribles.numOfScene][GlobalVaribles.actEnemyNum] = false;
         GlobalVaribles.actEnemy = null;
         GlobalVaribles.actEnemyNum = -1;
-        SceneManager.LoadScene(GlobalVaribles.sceneName);
+        SceneManager.LoadScene(GlobalVaribles.lastSceneName);
     }
 }
